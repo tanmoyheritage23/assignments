@@ -16,6 +16,57 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
+  // Your code here
+  constructor() {
+    this.result = 0;
+  }
+  add(num) {
+    this.result += num;
+  }
+  subtract(num) {
+    this.result -= num;
+  }
+  multiply(num) {
+    this.result *= num;
+  }
+  divide(num) {
+    try {
+      if (num == 0) {
+        throw new Error("Cannot divide by zero");
+      }
+      this.result /= num;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  clear() {
+    this.result = 0;
+  }
+  getResult() {
+    return this.result;
+  }
+  calculate(str) {
+    if (!this.isSafeString(str)) {
+      throw new Error("Invalid input");
+    }
+    try {
+      let ans = eval(str);
+      if (isNaN(ans) || !isFinite(ans)) {
+        throw new Error("Invalid input");
+      }
+      return (this.result = ans);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  // Helper function to check if the input string is safe(i.e. contains only numbers and arithmetic operators and parentheses)
+  isSafeString(input) {
+    let regex = /^[0-9()+\-*/. ]+$/;
+    return regex.test(input);
+  }
+}
+
+console.log(new Calculator().calculate("10 +   2 *  (   6 - (4 + 1) / 2) + 7"));
 
 module.exports = Calculator;
