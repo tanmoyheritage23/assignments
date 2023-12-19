@@ -42,7 +42,7 @@ describe('API Endpoints', () => {
         .mockImplementation((directoryPath, callback) => {
           callback(new Error('Mocked Internal Server Error'), null);
         });
-
+      
       const response = await sendRequest(options);
 
       expect(response.statusCode).toBe(500);
@@ -50,6 +50,8 @@ describe('API Endpoints', () => {
       fs.readdir.mockRestore();
     });
   });
+
+  
 
   describe('GET /file/:filename', () => {
     const testFilePath = path.join(__dirname, '../files', 'test-file.txt');
