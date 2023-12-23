@@ -4,11 +4,11 @@ const userMiddleware = require("../middleware/user");
 const { User } = require("../db/index");
 
 // User Routes
-app.post('/signup', (req, res) => {
+router.post('/signup', (req, res) => {
     // Implement user signup logic
 });
 
-app.post('/signin', (req, res) => {
+router.post('/signin', (req, res) => {
     // Implement admin signup logic
     User.findOne({ username: req.body.username })
         .then((user) => {
@@ -27,14 +27,16 @@ app.post('/signin', (req, res) => {
     
 });
 
-app.get('/courses', (req, res) => {
+router.get('/courses', (req, res) => {
     // Implement listing all courses logic
 });
 
-app.post('/courses/:courseId', userMiddleware, (req, res) => {
+router.post('/courses/:courseId', userMiddleware, (req, res) => {
     // Implement course purchase logic
 });
 
-app.get('/purchasedCourses', userMiddleware, (req, res) => {
+router.get('/purchasedCourses', userMiddleware, (req, res) => {
     // Implement fetching purchased courses logic
 });
+
+module.exports = router

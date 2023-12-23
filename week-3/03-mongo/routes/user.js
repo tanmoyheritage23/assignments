@@ -36,3 +36,5 @@ app.post("/courses/:courseId", userMiddleware, (req, res) => {
 app.get("/purchasedCourses", userMiddleware, (req, res) => {
   // Implement fetching purchased courses logic
 });
+
+module.exports = router
