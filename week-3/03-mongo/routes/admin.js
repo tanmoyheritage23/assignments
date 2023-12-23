@@ -4,10 +4,9 @@ const Admin = require("../db/index");
 const Course = require("../db/index");
 const router = Router();
 
-app.use(express.json());
 
 // Admin Routes
-app.post("/signup", (req, res) => {
+router.post("/signup", (req, res) => {
   // Implement admin signup logic
   const userName = req.body.username;
   const Password = req.body.password;
@@ -21,7 +20,7 @@ app.post("/signup", (req, res) => {
     });
 });
 
-app.post("/courses", adminMiddleware, (req, res) => {
+router.post("/courses", adminMiddleware, (req, res) => {
   // Implement course creation logic
   Course.create({
     title: req.body.title,
@@ -41,7 +40,7 @@ app.post("/courses", adminMiddleware, (req, res) => {
     });
 });
 
-app.get("/courses", adminMiddleware, (req, res) => {
+router.get("/courses", adminMiddleware, (req, res) => {
   // Implement fetching all courses logic
   Course.find({})
     .then((courses) => {
